@@ -1,0 +1,76 @@
+{
+  "test": "Hello World !",
+  "languages": "Languages",
+  "fr": "French",
+  "en": "English",
+  "presentation": {
+    "titre": "TABLEWEB",
+    "description": "Tableweb is a web-app to help you manage your adventure, like your characters or the scenario."
+  },
+  "error": {
+    "text1": "Oh dearie me! (＞人＜;) It appears that we've stumbled upon a 404 error, just like getting lost in a cute, little maze! (´∀｀) Don't fret, my sweet cupcake! ٩(◕‿◕｡)۶ Our kawaii tech fairies are fluttering around, sprinkling their magic dust, to guide you back to the land of adorable web pages! (ﾉ◕ヮ◕)ﾉ*:･ﾟ✧ So, please sit back, relax, and let us whisk you away on a journey to find what you're looking for! (´｡• ᵕ •｡`) ♡ ",
+    "text2": "If you'd like to go back home, you can click on this link : ",
+    "text3": "OOPSIE_WOOPSIE!"
+  },
+  "bouton": {
+    "texte": "Start !"
+  },
+  "toastsuccess": {
+    "register": "Registered successfully !",
+    "login": "Logged in successfully !",
+    "update": "Updated successfully !",
+    "create": "Created successfully !",
+    "delete": "Deleted successfully !"
+  },
+  "toasterror": {
+    "register": "An error occured while registering !",
+    "login": "An error occured while logging in !",
+    "update": "An error occured while updating !",
+    "create": "An error occured while creating !",
+    "delete": "An error occured while deleting !"
+  },
+  "register": {
+    "textI": "Register",
+    "textC": "Login",
+    "texti": "register",
+    "textc": "login",
+    "subbutton": "Confirm",
+    "textchangeA": "You can ",
+    "textchangeB": " here",
+    "email": "Email",
+    "username": "Username",
+    "password": "Password",
+    "password2": "Confirm password"
+  },
+  "flip": "Flip",
+  "name": "Name",
+  "class": "Class",
+  "lifepoint": "HP",
+  "race": "Race",
+  "level": "Level",
+  "hp": "HP",
+  "create": "Create",
+  "strength": "Strength",
+  "dexterity": "Dexterity",
+  "constitution": "Constitution",
+  "intelligence": "Intelligence",
+  "wisdom": "Wisdom",
+  "charisma": "Charisma",
+  "nav": {
+    "home": "Home",
+    "add": "Add",
+    "list": "List",
+    "logout": "Logout"
+  },
+  "list": {
+    "stats": "Stats",
+    "character": "Characters",
+    "delete": "Delete",
+    "modify": "Modify"
+  },
+  "loading": "Loading...",
+  "detail": {
+    "update_info": "Update info",
+    "update_stats": "Update stats"
+  }
+}

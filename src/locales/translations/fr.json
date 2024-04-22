@@ -1,0 +1,70 @@
+{
+  "test": "Bonjour Monde !",
+  "languages": "Langues",
+  "fr": "Français",
+  "en": "Anglais",
+  "presentation": {
+    "titre": "TABLEWEB",
+    "description": "TableWeb est une appli web pour aider les joueur de DnD à gérer une partie, les personnages ou le scénario !"
+  },
+  "error": {
+    "text1": "Oh mon Dieu ! (＞人＜;) Il semble que nous soyons tombés sur une erreur 404, un peu comme si nous nous perdions dans un joli petit labyrinthe ! (´∀｀) Ne t'inquiète pas, mon doux cupcake ! ٩(◕‿◕｡)۶ Nos fées technologiques kawaii voltigent, saupoudrant leur poussière magique, pour vous ramener au pays des pages Web adorables ! (ﾉ◕ヮ◕)ﾉ* :･ﾟ✧ Alors, asseyez-vous, détendez-vous et laissez-nous vous emmener dans un voyage pour trouver ce que vous cherchez ! (´｡•ᵕ •｡`) ♡ ",
+    "text2": "Si vous souhaitez rentrer chez vous, vous pouvez cliquer sur ce lien :",
+    "text3": "OUPSIE OUPSIE !"
+  },
+  "bouton": {
+    "texte": "Commencez !"
+  },
+  "toastsuccess": {
+    "register": "Enregistrement avec succès !",
+    "login": "Connexion avec succès !",
+    "update": "Personnage mis à jour avec succès !",
+    "create": "Personnage créé avec succès !",
+    "delete": "Personnage supprimé avec succès !"
+  },
+  "toasterror": {
+    "register": "Erreur lors de l'enregistrement !",
+    "login": "Erreur lors de la connexion !",
+    "update": "Erreur lors de la mise à jour du personnage !",
+    "create": "Erreur lors de la création du personnage !",
+    "delete": "Erreur lors de la suppression du personnage !"
+  },
+  "register": {
+    "textI": "Inscription",
+    "textC": "Connexion",
+    "texti": "inscrire",
+    "textc": "connecter",
+    "subbutton": "Confirmer",
+    "textchangeA": "Vous pouvez vous ",
+    "textchangeB": " ici",
+    "email": "Email",
+    "username": "Nom d'utilisateur",
+    "password": "Mot de passe",
+    "password2": "Confirmer le mot de passe"
+  },
+  "flip": "Retourner",
+  "name": "Nom",
+  "class": "Classe",
+  "lifepoint": "HP",
+  "race": "Race",
+  "level": "Niveau",
+  "hp": "Points de vie",
+  "create": "Créer",
+  "strength": "Force",
+  "dexterity": "Dextérité",
+  "constitution": "Constitution",
+  "intelligence": "Intelligence",
+  "wisdom": "Sagesse",
+  "charisma": "Charisme",
+  "list": {
+    "stats": "Statistiques",
+    "character": "Personnages",
+    "delete": "Supprimer",
+    "modify": "Modifier"
+  },
+  "loading": "Chargement...",
+  "detail": {
+    "update_info": "Mettre à jour les infos",
+    "update_stats": "Mettre à jour les stats"
+  }
+}
