@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import Choukram from "../../components/choukram";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 
@@ -42,14 +41,6 @@ const Button = styled.button`
     background-color: #8a2a35;
   }
 `;
-const StyledChoukram = styled.div`
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 50px;
-  aspect-ratio: 1;
-  padding: 10px;
-`;
 
 export default function Home() {
   const navigate = useNavigate();
@@ -58,9 +49,6 @@ export default function Home() {
   return (
     <>
       <Container>
-        <StyledChoukram>
-          <Choukram />
-        </StyledChoukram>
         <Title>{t("presentation.titre")}</Title>
         <Description>{t("presentation.description")}</Description>
         <Button onClick={() => navigate("/login")}>{t("bouton.texte")}</Button>

@@ -1,4 +1,3 @@
-import LoginForm from "../../components/loginForm";
 import styled from "styled-components";
 import LanguageSwitcher from "../../components/languageSwitcher";
 
@@ -15,7 +14,6 @@ export default function Login() {
   return (
     <StyledLoginScreen>
       <LanguageSwitcher />
-      <LoginForm />
     </StyledLoginScreen>
   );
 }

@@ -1,5 +1,4 @@
 import ErrorText from "../../components/errorText";
-import Choukram from "../../components/choukram";
 import styled from "styled-components";
 
 const StyledErrorScreen = styled.div`
@@ -10,7 +9,6 @@ const StyledErrorScreen = styled.div`
   justify-content: center;
   align-items: center;
 `;
-
 const StyledLogoContainer = styled.div`
   position: absolute;
   top: 0;
@@ -21,9 +19,7 @@ const StyledLogoContainer = styled.div`
 export default function Error() {
   return (
     <StyledErrorScreen>
-      <StyledLogoContainer>
-        <Choukram />
-      </StyledLogoContainer>
+      <StyledLogoContainer></StyledLogoContainer>
       <ErrorText />
     </StyledErrorScreen>
   );
