@@ -21,8 +21,6 @@ export default function RegisterHook() {
         try {
             const { data } = await axios.post("http://localhost:8080/register", {
                 ...values,
-            }, {
-                withCredentials: true
             });
             if (data) {
                 if (data.errors) {
