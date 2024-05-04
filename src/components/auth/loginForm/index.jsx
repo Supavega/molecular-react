@@ -1,18 +1,18 @@
 import { InputText } from "primereact/inputtext";
 import { Password } from "primereact/password";
 import { Button } from "primereact/button";
-import { useState } from "react";
 import { CenterForm } from "../../shared/form";
+import LoginHook from "../../../hooks/loginHook";
 
 export default function LoginForm() {
-  const [value, setValue] = useState('');
+  const { values, handleChange, handleSubmit } = LoginHook();
 
   return(
     <>
-      <CenterForm>
-        <InputText placeholder="email" value={value} onChange={(e) => setValue(e.target.value)} />
-        <Password placeholder="password" value={value} onChange={(e) => setValue(e.target.value)} />
-        <Button label="submit"/>
+      <CenterForm onSubmit={handleSubmit}>
+        <InputText name="mail" placeholder="mail" value={values.mail} onChange={handleChange} />
+        <Password name="password" placeholder="password" value={values.password} onChange={handleChange} />
+        <Button type="submit" label="Login"/>
       </CenterForm>   
     </>
   );
