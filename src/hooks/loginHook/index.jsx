@@ -2,22 +2,22 @@ import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
-export default function useLogin() {
-  const [values, setValue] = useState({
+export default function LoginHook() {
+  const [values, setValues] = useState({
     mail: "",
     password: "",
   });
 
   const navigate = useNavigate();
 
-  const HandleChange = (e) => {
-    setValue({
+  const handleChange = (e) => {
+    setValues({
       ...values,
-      [e.target.name]: e.target.value,
+      [e.target.name]: e.target.value
     });
   };
 
-  const HandleSubmit = async (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       const { data } = await axios
@@ -44,7 +44,7 @@ export default function useLogin() {
 
   return {
     values,
-    HandleChange,
-    HandleSubmit,
+    handleChange,
+    handleSubmit,
   };
 }
