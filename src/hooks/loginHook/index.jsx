@@ -35,7 +35,7 @@ export default function useLogin() {
           const token = authHeader && authHeader.split(" ")[1];
           localStorage.setItem("userId", res.data.user._id);
           localStorage.setItem("token", token);
-          navigate("/list");
+          navigate("/dashboard");
         });
     } catch (error) {
       console.log(error);
