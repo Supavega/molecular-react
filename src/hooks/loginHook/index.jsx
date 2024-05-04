@@ -26,9 +26,6 @@ export default function LoginHook() {
           {
             ...values,
           },
-          {
-            withCredentials: true,
-          }
         )
         .then((res) => {
           const authHeader = res.headers.authorization;
