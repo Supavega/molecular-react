@@ -20,22 +20,14 @@ export default function LoginHook() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const { data } = await axios
-        .post(
-          "http://localhost:8080/login",
-          {
-            ...values,
-          },
-        )
-        .then((res) => {
-          const authHeader = res.headers.authorization;
-          const token = authHeader && authHeader.split(" ")[1];
-          localStorage.setItem("userId", res.data.user._id);
-          localStorage.setItem("token", token);
-          navigate("/dashboard");
-        });
+      const res = await axios.post('http://localhost:8080/login', { email, password });
+      const token = res.headers.authorization.split(' ')[1];
+      const userId = res.data.user._id;
+      localStorage.setItem('userId', userId);
+      localStorage.setItem('token', token);
+      navigate("/dashboard");
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   };
 
