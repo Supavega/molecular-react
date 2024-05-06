@@ -27,7 +27,6 @@ export default function UseWorkspaceForm() {
         console.error('No token found in local storage');
         return;
       }
-      console.log("storedToken", storedToken);
       await axios.post("http://localhost:8080/workspace", { ...values, userId: storedUserId },{
         headers: {
           Authorization: "Bearer " + storedToken
