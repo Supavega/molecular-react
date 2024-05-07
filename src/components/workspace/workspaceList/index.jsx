@@ -1,5 +1,7 @@
 import useWorkspaceList from "../../../hooks/workspaceHook/workspaceListHook"
 import { useEffect, useState, useCallback } from "react";
+import { Button } from 'primereact/button';
+        
 
 export default function WorkspaceList() {
   const { loadWorkspaceList } = useWorkspaceList();
@@ -21,7 +23,7 @@ export default function WorkspaceList() {
       {
         workspaceList.map((workspaceList, index) => (
           <div key={index}>
-            <h1>{workspaceList.name}</h1>
+            <Button severity="secondary" text>{workspaceList.name}</Button>
           </div>
         ))
       }
