@@ -1,10 +1,12 @@
-import NavBar from "../../components/NavBar"
+import NavBar from "../../components/NavBar";
+import WorkspaceList from "../../components/workspace/workspaceList";
+
 export default function Dashboard() {
 
   return (
     <>
       <NavBar />
-      <h1>Dashboard</h1>
+      <WorkspaceList />
     </>
   )
 }

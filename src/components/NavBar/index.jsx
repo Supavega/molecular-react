@@ -19,12 +19,6 @@ export default function NavBar() {
       label: "Create workspace",
       command: createFileDialog
     },
-    {
-      label: "New File",
-      command: () => {
-        setDisplayDialog(true);
-      }
-    }
   ]
 
   return(
