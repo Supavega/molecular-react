@@ -6,6 +6,7 @@ import Error from "../screens/error";
 import Dashboard from "../screens/dashboard";
 import Edition from "../screens/edition";
 import ProtectedRoute from "../components/protectedRoute";
+import Workspace from "../screens/workspace";
 
 const router = createBrowserRouter([
   {
@@ -31,7 +32,12 @@ const router = createBrowserRouter([
   {
     path: "/edition",
     element: <ProtectedRoute><Edition /></ProtectedRoute>
+  },
+  {
+    path: "/workspace/:id",
+    element: <ProtectedRoute><Workspace/></ProtectedRoute>
   }
+
 ]);
 
 const Routes = () => {

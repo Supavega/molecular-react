@@ -32,7 +32,7 @@ export default function UseWorkspaceForm() {
           Authorization: "Bearer " + storedToken
         }
       });
-      navigate("/workspace");
+      navigate("/dashboard");
     } catch (error) {
       console.error(error);
     }
