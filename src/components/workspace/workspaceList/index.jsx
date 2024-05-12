@@ -22,7 +22,7 @@ export default function WorkspaceList() {
         workspaceList.map((workspaceList, index) => (
           <div key={index}>
             <h1>
-            <a href="workspace/{$workspaceList._id}">{workspaceList.name}</a>
+            <a href={`workspace/${workspaceList._id}`}>{workspaceList.name}</a>
             </h1>
           </div>
         ))

@@ -30,7 +30,7 @@ const router = createBrowserRouter([
     element: <ProtectedRoute><Dashboard /></ProtectedRoute>
   },
   {
-    path: "/edition",
+    path: "/edition/:id",
     element: <ProtectedRoute><Edition /></ProtectedRoute>
   },
   {
