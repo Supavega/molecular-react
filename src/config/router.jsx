@@ -5,6 +5,7 @@ import Register from "../screens/register";
 import Error from "../screens/error";
 import Dashboard from "../screens/dashboard";
 import Edition from "../screens/edition";
+import Workspace from "../screens/workspace";
 import ProtectedRoute from "../components/protectedRoute";
 
 const router = createBrowserRouter([
@@ -31,7 +32,12 @@ const router = createBrowserRouter([
   {
     path: "/edition",
     element: <ProtectedRoute><Edition /></ProtectedRoute>
+  },
+  {
+    path: "/workspace/:id",
+    element: <ProtectedRoute><Workspace /></ProtectedRoute>
   }
+
 ]);
 
 const Routes = () => {

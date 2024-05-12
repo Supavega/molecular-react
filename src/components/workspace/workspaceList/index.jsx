@@ -1,11 +1,13 @@
 import useWorkspaceList from "../../../hooks/workspaceHook/workspaceListHook"
 import { useEffect, useState, useCallback } from "react";
-import { Button } from 'primereact/button';
-        
+import { useNavigate } from "react-router-dom";
+import { List, ListItem } from "../../shared/list";
+
 
 export default function WorkspaceList() {
   const { loadWorkspaceList } = useWorkspaceList();
-  const [workspaceList, setWorkspaceList] = useState([]); 
+  const [workspaceList, setWorkspaceList] = useState([]);
+  const navigate = useNavigate();
 
   const fetchWorkspaceList = useCallback(async () => {
     const res = await loadWorkspaceList();
@@ -14,6 +16,12 @@ export default function WorkspaceList() {
     }
   }, [loadWorkspaceList]);
 
+  const loadWorkspace = (id) => {
+    return () => {
+      navigate(`/workspace/${id}`);
+    }
+  }
+
   useEffect(() => {
     fetchWorkspaceList();
   }, [fetchWorkspaceList]);
@@ -21,10 +29,10 @@ export default function WorkspaceList() {
   return (
     <>
       {
-        workspaceList.map((workspaceList, index) => (
-          <div key={index}>
-            <Button severity="secondary" text>{workspaceList.name}</Button>
-          </div>
+        workspaceList.map((workspace, index) => (
+          <List key={index}> 
+            <ListItem onClick={loadWorkspace(workspace._id)}> {workspace.name} </ListItem>
+          </List>
         ))
       }
     </>
