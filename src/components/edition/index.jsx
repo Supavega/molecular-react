@@ -2,6 +2,7 @@ import { useEffect, useState, useCallback } from "react";
 import useFileList from "../../hooks/fileHook/listFileHook";
 import { useParams } from "react-router-dom";
 import MarkdownPreview from "./MarkdownPreview";
+import MarkdownParser from "./MarkdownParser";
 
 export default function EditionComp() {
   const { loadFile } = useFileList();
@@ -33,7 +34,9 @@ export default function EditionComp() {
 
   return (
     <>
+      <MarkdownParser content={fileContent} />
       <MarkdownPreview content={fileContent} />
+      {/* <MarkdownEditor /> */}
     </>
   )
 }
