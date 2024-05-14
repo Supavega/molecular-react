@@ -1,5 +1,4 @@
-import { MDXProvider } from '@mdx-js/react';
-// import { mdx } from '@mdx-js/react';
+import { MDXEditor, headingsPlugin } from '@mdxeditor/editor';
 import { useEffect, useState, useCallback } from "react";
 import useFileList from "../../hooks/fileHook/listFileHook";
 import { useParams } from "react-router-dom";
@@ -8,23 +7,29 @@ export default function EditionComp() {
 	const { loadFile } =  useFileList();
 	const [file, setFile] = useState(null);
 	const { id } = useParams();
-	// const component = mdx(content);
 
 	const fetchFile = useCallback(async () => {
-		const res = await loadFile(id);
-		if (res && res.data) {
-			setFile(res.data.data);
+		try {
+			const res = await loadFile(id);
+			if (res && res.data) {
+				setFile(res.data.data);
+			}
+			console.log(res);
+			console.log("file", file);
+		} catch (error) {
+			console.error("Error loading file:", error);
 		}
-	}, [loadFile]);
+	}, [loadFile, file, id]);
 
 	useEffect(() => {
 		fetchFile();
-		console.log("file",file);
 	}, [fetchFile]);
 
 	return (
-		<MDXProvider>
 
-		</MDXProvider>
+		<>
+			<h1>TEST</h1>
+			{file && file.content}
+		</>
 	);
 }
