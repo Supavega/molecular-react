@@ -1,20 +1,30 @@
-import '@mdxeditor/editor/style.css'
-import { MDXEditor, toolbarPlugin , diffSourcePlugin , DiffSourceToggleWrapper ,  UndoRedo} from '@mdxeditor/editor'
+import { MDXProvider } from '@mdx-js/react';
+// import { mdx } from '@mdx-js/react';
+import { useEffect, useState, useCallback } from "react";
+import useFileList from "../../hooks/fileHook/listFileHook";
+import { useParams } from "react-router-dom";
 
 export default function EditionComp() {
-    return (
-        <MDXEditor
-            plugins={[
-                diffSourcePlugin({ diffMarkdown: '', viewMode: 'rich-text'}),
-                toolbarPlugin({
-                    toolbarContents: () => (
-                        <DiffSourceToggleWrapper>
-                            <UndoRedo />
-                            <button>Save</button>
-                        </DiffSourceToggleWrapper>
-                    )
-                })
-            ]}
-        />
-    )
+	const { loadFile } =  useFileList();
+	const [file, setFile] = useState(null);
+	const { id } = useParams();
+	// const component = mdx(content);
+
+	const fetchFile = useCallback(async () => {
+		const res = await loadFile(id);
+		if (res && res.data) {
+			setFile(res.data.data);
+		}
+	}, [loadFile]);
+
+	useEffect(() => {
+		fetchFile();
+		console.log("file",file);
+	}, [fetchFile]);
+
+	return (
+		<MDXProvider>
+
+		</MDXProvider>
+	);
 }

@@ -10,6 +10,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@mdx-js/react": "^3.0.1",
     "@mdxeditor/editor": "^3.0.5",
     "axios": "^1.6.8",
     "i18next-browser-languagedetector": "^7.2.1",
