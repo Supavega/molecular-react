@@ -1,35 +1,58 @@
-import { MDXEditor, headingsPlugin } from '@mdxeditor/editor';
+import { MDXEditor } from "@mdxeditor/editor";
+import { headingsPlugin } from "@mdxeditor/editor";
+import "@mdxeditor/editor/style.css";
 import { useEffect, useState, useCallback } from "react";
 import useFileList from "../../hooks/fileHook/listFileHook";
 import { useParams } from "react-router-dom";
 
 export default function EditionComp() {
-	const { loadFile } =  useFileList();
-	const [file, setFile] = useState(null);
-	const { id } = useParams();
+  const { loadFile } = useFileList();
+  const [file, setFile] = useState(null);
+	const [fileContent, setFileContent] = useState(null);
+  const { id } = useParams();
 
-	const fetchFile = useCallback(async () => {
-		try {
-			const res = await loadFile(id);
-			if (res && res.data) {
-				setFile(res.data.data);
-			}
-			console.log(res);
-			console.log("file", file);
-		} catch (error) {
-			console.error("Error loading file:", error);
-		}
-	}, [loadFile, file, id]);
+  const fetchFile = useCallback(async () => {
+    try {
+      const res = await loadFile(id);
+      if (res && res.data) {
+        setFile(res.data.data);
+
+      }
+    } catch (error) {
+      console.error("Error loading file:", error);
+    }
+  }, [loadFile, id]);
+
+  useEffect(() => {
+    fetchFile();
+  }, [fetchFile]);
 
 	useEffect(() => {
-		fetchFile();
-	}, [fetchFile]);
+		if (file) {
+      setFileContent(file.content);
+    }
+	}, [file]);
 
-	return (
+	useEffect(() => {
+		console.log(fileContent);
+	}, [fileContent]);
+	
+	const addContent = () => {
+		setFileContent(prevContent => prevContent + "\n# New content");
+		console.log(fileContent);
+	}
 
+
+
+  return fileContent !== null ? (
 		<>
-			<h1>TEST</h1>
-			{file && file.content}
+			<button onClick={addContent}> new content </button>
+			<MDXEditor
+				markdown={fileContent}
+				plugins={[ headingsPlugin() ]}
+			/>
 		</>
-	);
+  ) : (
+    <h1>Loading...</h1>
+  );
 }
