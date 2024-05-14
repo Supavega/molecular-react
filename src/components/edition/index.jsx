@@ -1,9 +1,7 @@
-import { MDXEditor } from "@mdxeditor/editor";
-import { headingsPlugin } from "@mdxeditor/editor";
-import "@mdxeditor/editor/style.css";
 import { useEffect, useState, useCallback } from "react";
 import useFileList from "../../hooks/fileHook/listFileHook";
 import { useParams } from "react-router-dom";
+import MarkdownPreview from "./MarkdownPreview";
 
 export default function EditionComp() {
   const { loadFile } = useFileList();
@@ -33,26 +31,9 @@ export default function EditionComp() {
     }
 	}, [file]);
 
-	useEffect(() => {
-		console.log(fileContent);
-	}, [fileContent]);
-	
-	const addContent = () => {
-		setFileContent(prevContent => prevContent + "\n# New content");
-		console.log(fileContent);
-	}
-
-
-
-  return fileContent !== null ? (
-		<>
-			<button onClick={addContent}> new content </button>
-			<MDXEditor
-				markdown={fileContent}
-				plugins={[ headingsPlugin() ]}
-			/>
-		</>
-  ) : (
-    <h1>Loading...</h1>
-  );
+  return (
+    <>
+      <MarkdownPreview content={fileContent} />
+    </>
+  )
 }
