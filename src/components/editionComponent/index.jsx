@@ -3,6 +3,7 @@ import useFileList from "../../hooks/fileHook/listFileHook";
 import { useParams } from "react-router-dom";
 import MarkdownPreview from "./MarkdownPreview";
 import MarkdownParser from "./MarkdownParser";
+import { FlexTileChild, FlexTilesContainer } from "../shared/flex";
 
 export default function EditionComp() {
   const { loadFile } = useFileList();
@@ -34,9 +35,17 @@ export default function EditionComp() {
 
   return (
     <>
-      <MarkdownParser content={fileContent} />
-      <MarkdownPreview content={fileContent} />
-      {/* <MarkdownEditor /> */}
+      <FlexTilesContainer>
+        <FlexTileChild>
+          <MarkdownParser content={fileContent} />
+        </FlexTileChild>
+        <FlexTileChild>
+          <MarkdownPreview content={fileContent} />
+        </FlexTileChild>
+        <FlexTileChild>
+          {/* <MarkdownEditor /> */}
+        </FlexTileChild>
+      </FlexTilesContainer>
     </>
   )
 }
