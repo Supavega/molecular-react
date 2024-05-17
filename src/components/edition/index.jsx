@@ -34,12 +34,10 @@ export default function EditionComp() {
 	}, [file]);
 
 	useEffect(() => {
-		console.log(fileContent);
 	}, [fileContent]);
 	
 	const addContent = () => {
 		setFileContent(prevContent => prevContent + "\n# New content");
-		console.log(fileContent);
 	}
 
 
