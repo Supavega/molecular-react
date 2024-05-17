@@ -7,7 +7,6 @@ import Dashboard from "../screens/dashboard";
 import Edition from "../screens/edition";
 import Workspace from "../screens/workspace";
 import ProtectedRoute from "../components/protectedRoute";
-import Test from "../screens/test";
 
 const router = createBrowserRouter([
   {
