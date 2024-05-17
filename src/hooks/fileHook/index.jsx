@@ -26,14 +26,14 @@ export default function UseFileCreate() {
             return;
         }
         try {
-            await axios.post("http://localhost:8080/file/create", { ...values , workspaceid: workspaceid
+            await axios.post("http://localhost:8080/file/create", { ...values , workspaceid: workspaceid , creationDate: new Date()
             }, {
                 headers: {
                     Authorization: "Bearer " + storedToken
                 }
                 
             });
-
+    
         } catch (error) {
             console.error(error);
         }

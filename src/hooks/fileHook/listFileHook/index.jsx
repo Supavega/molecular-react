@@ -40,8 +40,24 @@ export default function useFileList() {
       }
     };
 
+    const getAllFile = async () => {
+      const storedToken = localStorage.getItem("token");
+
+      try {
+        const res = await axios.get(`http://localhost:8080/fileAll`, {
+          headers: {
+            Authorization: "Bearer " + storedToken,
+          },
+        });
+        return res;
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
     return { 
         loadFileList,
-        loadFile
+        loadFile,
+        getAllFile
     }
 }
