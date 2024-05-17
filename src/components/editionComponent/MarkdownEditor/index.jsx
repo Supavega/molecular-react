@@ -7,13 +7,12 @@ export default function MarkdownEditor({ content, parsedContent }) {
   const [localContent, setLocalContent] = useState(content);
   const [fullContent, setFullContent] = useState(parsedContent);
 
-  const handleListChange = (e, index) => {
-    // Handle changes for InputTextarea in a list
-    setLocalContent((prevContent) => {
-      let newLocalContent = [...prevContent];
-      newLocalContent[index].children[0].children[0].value = e.target.value;
+  const handleListChange = (e, index) => {  
+    setLocalContent(prevContent => {
+      let newLocalContent = { ...prevContent }
+      newLocalContent.children[index].children[0].children[0].value = e.target.value
       return newLocalContent;
-    });
+    });    
   };
 
   const handleDefaultChange = (e) => {
@@ -41,22 +40,22 @@ export default function MarkdownEditor({ content, parsedContent }) {
   const getTypeContent = (mdcontent) => {
     switch (mdcontent.type) {
       case "list":
-        console.log(mdcontent);
         return mdcontent.children.map((child, index) => {
           return (
             <InputTextarea
               key={index}
               autoResize
               value={child.children[0].children[0].value}
+              onChange={(e) => handleListChange(e, index)}
             />
           );
         });
       default: 
-        console.log(mdcontent);
         return (
           <InputTextarea
             autoResize
             value={mdcontent.children[0].value}
+            onChange={(e) => handleDefaultChange(e)}
           />
         );
     }
