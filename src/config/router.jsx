@@ -36,6 +36,10 @@ const router = createBrowserRouter([
   {
     path: "/workspace/:id",
     element: <ProtectedRoute><Workspace/></ProtectedRoute>
+  },
+  {
+    path: "/user/:id",
+    element: <ProtectedRoute><Workspace/></ProtectedRoute>
   }
 
 ]);
