@@ -36,8 +36,6 @@ export default function MarkdownEditor({ content, parsedContent, id, fileId }) {
       newFullContent.children[id] = localContent
     });
     const data = stringifyMarkdown(fullContent);
-    console.log("test", data);
-    console.log("fileId", fileId);
     await saveFile(fileId, data);
   };
 
