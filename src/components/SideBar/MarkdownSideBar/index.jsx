@@ -4,11 +4,11 @@ import PropTypes from "prop-types";
 import MarkdownEditor from "../../editionComponent/MarkdownEditor";
 
 
-export default function MarkdownSideBar({ visible, mdcontent, onHide, parsedContent }) {
+export default function MarkdownSideBar({ visible, mdcontent, onHide, parsedContent, id, fileId }) {
 
   return (
     <Sidebar visible={visible} onHide={onHide}>
-      <MarkdownEditor content={mdcontent} parsedContent={parsedContent}/>
+      <MarkdownEditor content={mdcontent} parsedContent={parsedContent} id={id} fileId={fileId}/>
     </Sidebar>
   )
 }

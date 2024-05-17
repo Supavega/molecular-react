@@ -7,11 +7,12 @@ import PropTypes from "prop-types";
 import { useParams } from "react-router-dom";
 
 
-export default function MarkdownParser({ content }){
+export default function MarkdownParser({ content, fileId }){
   const [parsedContent, setParsedContent] = useState(null);
   const [elements, setElements] = useState([]);
   const [displaySidebar, setDisplaySidebar] = useState(false);
   const [selectedContent, setSelectedContent] = useState(null);
+  const [selectedIndex, setSelectedIndex] = useState(null)
   const { id } = useParams();
 
 
@@ -32,7 +33,7 @@ export default function MarkdownParser({ content }){
         <Button
           key={index}
           text 
-          onClick={() => displayDetailContent(mdcontent)}
+          onClick={() => displayDetailContent(mdcontent, index)}
         >
           {mdcontent.type}
         </Button>
@@ -41,8 +42,9 @@ export default function MarkdownParser({ content }){
     setElements(newElements);
   };
 
-  const displayDetailContent = (content) => {
+  const displayDetailContent = (content, index) => {
     setSelectedContent(content);
+    setSelectedIndex(index);
     setDisplaySidebar(true);
   };
 
@@ -53,6 +55,8 @@ export default function MarkdownParser({ content }){
         onHide={() => setDisplaySidebar(false)}
         mdcontent={selectedContent} 
         parsedContent={parsedContent}
+        id={selectedIndex}
+        fileId={fileId}
       />
       <MdContainer>
         { elements }

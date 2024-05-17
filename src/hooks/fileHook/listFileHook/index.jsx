@@ -2,8 +2,8 @@ import axios from "axios";
 
 export default function useFileList() {
     const loadFileList = async () => {
+      const storedToken = localStorage.getItem("token");
         try {
-        const storedToken = localStorage.getItem("token");
         const pathSegments = window.location.pathname.split('/');
         const workspaceId = pathSegments[pathSegments.length - 1];
     
@@ -40,8 +40,22 @@ export default function useFileList() {
       }
     };
 
+    const saveFile = async (id, data) => {
+      const storedToken = localStorage.getItem("token");
+      try {
+        await axios.put("http://localhost:8080/file", {fileId: id, content: data}, {
+          headers: {
+            Authorization: "Bearer " + storedToken
+          }
+        });
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
     return { 
         loadFileList,
-        loadFile
+        loadFile,
+        saveFile
     }
 }

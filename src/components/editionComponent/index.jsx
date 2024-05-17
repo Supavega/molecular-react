@@ -37,7 +37,7 @@ export default function EditionComp() {
     <>
       <FlexTilesContainer>
         <FlexTileChild>
-          <MarkdownParser content={fileContent} stringContent=""/>
+          <MarkdownParser content={fileContent} fileId={id}/>
         </FlexTileChild>
         <FlexTileChild> 
           <MarkdownPreview content={fileContent} />

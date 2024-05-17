@@ -2,17 +2,23 @@ import { useState, useEffect } from "react";
 import { InputTextarea } from "primereact/inputtextarea";
 import { Button } from "primereact/button";
 import PropTypes from "prop-types";
+import { useParams } from "react-router-dom";
+import { stringifyMarkdown } from "../../../utils/parser";
+import useFileList from "../../../hooks/fileHook/listFileHook";
 
-export default function MarkdownEditor({ content, parsedContent }) {
+export default function MarkdownEditor({ content, parsedContent, id, fileId }) {
   const [localContent, setLocalContent] = useState(content);
   const [fullContent, setFullContent] = useState(parsedContent);
+  const { saveFile } = useFileList();
 
   const handleListChange = (e, index) => {  
-    setLocalContent(prevContent => {
-      let newLocalContent = { ...prevContent }
-      newLocalContent.children[index].children[0].children[0].value = e.target.value
-      return newLocalContent;
-    });    
+  setLocalContent((prevContent) => {
+    let newLocalContent = { ...prevContent };
+    if (newLocalContent.children && newLocalContent.children[index]) {
+      newLocalContent.children[index].children[0].children[0].value = e.target.value;
+    }
+    return newLocalContent;
+  });    
   };
 
   const handleDefaultChange = (e) => {
@@ -24,9 +30,15 @@ export default function MarkdownEditor({ content, parsedContent }) {
 
   };
 
-  const handleSave = () => {
-    console.log(localContent);
-    console.log("parsedContent", parsedContent);
+  const handleSave = async () => {
+    setFullContent(prevContent => {
+      let newFullContent = { ...prevContent };
+      newFullContent.children[id] = localContent
+    });
+    const data = stringifyMarkdown(fullContent);
+    console.log("test", data);
+    console.log("fileId", fileId);
+    await saveFile(fileId, data);
   };
 
   useEffect(() => {
