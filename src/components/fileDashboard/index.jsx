@@ -3,8 +3,10 @@ import styled from "styled-components";
 import { useEffect, useState, useCallback } from "react";
 import { Card } from "primereact/card";
 import { Link } from "react-router-dom";
+import SearchBar from "../searchBar";
 
 export default function FileList() {
+    const [search, setSearch] = useState('');
     const { getAllFile } = useFileList();
     const [allFiles, setAllFiles] = useState([]); 
     
@@ -19,11 +21,18 @@ export default function FileList() {
         fetchAllFiles();
     }, [fetchAllFiles]);
 
+    const handleSearchChange = (event) => {
+        setSearch(event.target.value);
+    };
+
+    const filteredFiles = allFiles.filter((file) => file.name.includes(search));
 
     return (
+        <>
+        <SearchBar search={search} onSearchChange={handleSearchChange} />
         <CardContainer>
             {
-                allFiles && allFiles.map((file, index) => (
+                allFiles && filteredFiles.map((file, index) => (
                 <StyledCard 
                     key={index} 
                     title={<Link to={`/edition/${file._id}`} style={{ textDecoration: 'none', color: 'inherit' }}>{file.name}</Link>}
@@ -35,6 +44,7 @@ export default function FileList() {
                 ))
             }
         </CardContainer>
+        </>
     );
 }
 
