@@ -16,7 +16,7 @@ const StyledButton =  styled.p`
     text-align:center;
     border-radius: 4px;
     font-family: Arial, Helvetica, sans-serif;
-    color: hsl(51, 88%, 94%);
+    color: #FFF !important;
     text-transform: uppercase;
     cursor: pointer;
 `
