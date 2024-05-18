@@ -1,4 +1,4 @@
-import { parseMarkdown, addContent } from "../../../utils/parser";
+import { parseMarkdown } from "../../../utils/parser";
 import { Button } from "primereact/button";
 import { MdContainer } from "../../shared/mdeditor"
 import { useEffect, useState } from "react";
@@ -52,7 +52,6 @@ export default function MarkdownParser({ content, fileId }){
 
   const addObject = () => {
     setDisplayContentSideBar(true);
-    addContent(parsedContent);
   };
 
   return(

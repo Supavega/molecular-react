@@ -1,8 +1,9 @@
-import { addContent } from "../../../utils/parser";
+// import { addContent } from "../../../utils/parser";
 import { Dropdown } from "primereact/dropdown";
 import { InputTextarea } from "primereact/inputtextarea";
 import { Button } from "primereact/button";
 import { useState, useEffect } from "react";
+import ListEdition from "../ListEdition";
 
 export default function MarkdownAddContent({mdcontent}) {
 
@@ -17,14 +18,8 @@ export default function MarkdownAddContent({mdcontent}) {
     { name: "unordered-list"}
   ];
 
-  /**
-   * type : String, to chose the type content 
-   * value : the value of the content 
-   * ordered: Only if it's a list 
-   * code : "to add code"
-   */
   const createContent = (type, value, ordered) => {
-    addContent(mdcontent, type, value, ordered)
+    // addContent(mdcontent, type, value, ordered)
   };
 
   useEffect(() => {
@@ -41,9 +36,9 @@ export default function MarkdownAddContent({mdcontent}) {
         case "code":
           return <InputTextarea value="my code" />;
         case "ordered-list":
-          return <InputTextarea value="make list component" />;
+          return <ListEdition ordered/>;
         case "unordered-list":
-          return <InputTextarea value="unordered list" />;
+          return <ListEdition />;
       }
     }
   };
@@ -58,7 +53,7 @@ export default function MarkdownAddContent({mdcontent}) {
         placeholder="Select a type"
       />
       {displayContentEditor()}
-      <Button label="add content"/>
+      <Button onClick={() => {createContent()}} label="add content"/>
     </>
   )
 }
