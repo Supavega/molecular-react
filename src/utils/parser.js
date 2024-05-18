@@ -20,7 +20,9 @@ export const stringifyMarkdown = (markdownContent) => {
   return markdownStringifier;
 };
 
-export const addContent = (ast, newContent) => {
+export const addContent = (ast, type, value, ordered) => {
+
+  
 
   // Exemple of content
   const heading = {
