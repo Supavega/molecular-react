@@ -1,14 +1,16 @@
-// import { addContent } from "../../../utils/parser";
 import { Dropdown } from "primereact/dropdown";
 import { InputTextarea } from "primereact/inputtextarea";
 import { Button } from "primereact/button";
 import { useState, useEffect } from "react";
 import ListEdition from "../ListEdition";
+import { addContentToEnd } from "../../../utils/parser";
+import useFileList from "../../../hooks/fileHook/listFileHook";
 
-export default function MarkdownAddContent({mdcontent}) {
+export default function MarkdownAddContent({mdcontent, fileId}) {
 
-  const [selectedType, setSelectedType] = useState(null);
-  const [contentValue, setContentValue] = useState(null);
+  const [selectedType, setSelectedType] = useState("paragraph");
+  const [contentValue, setContentValue] = useState("");
+  const { saveFile } = useFileList();
 
   const types = [
     { name: "heading" },
@@ -18,27 +20,30 @@ export default function MarkdownAddContent({mdcontent}) {
     { name: "unordered-list"}
   ];
 
-  const createContent = (type, value, ordered) => {
-    // addContent(mdcontent, type, value, ordered)
+  const handleChangeContentValue = (e) => {
+    setContentValue(e.target.value);
   };
 
-  useEffect(() => {
-    console.log("selectedType", selectedType)
-  }, [selectedType])
+  const createContent = async () => {
+    const res = addContentToEnd(mdcontent, selectedType.name, contentValue);
+    await saveFile(fileId, res);
+  };
+
+
 
   const displayContentEditor = () => {
     if(selectedType) {
       switch (selectedType.name) {
         case "paragraph":
-          return <InputTextarea value="my paragraph" />;
+          return <InputTextarea value={contentValue} onChange={handleChangeContentValue} />;
         case "heading":
-          return <InputTextarea value="heading" />;
+          return <InputTextarea value={contentValue} onChange={handleChangeContentValue} />;
         case "code":
-          return <InputTextarea value="my code" />;
+          return <InputTextarea value={contentValue} onChange={handleChangeContentValue} />;
         case "ordered-list":
-          return <ListEdition ordered/>;
+          return <ListEdition ordered mdcontent={mdcontent} fileId={fileId} />;
         case "unordered-list":
-          return <ListEdition />;
+          return <ListEdition mdcontent={mdcontent} fileId={fileId} />;
       }
     }
   };
@@ -53,7 +58,9 @@ export default function MarkdownAddContent({mdcontent}) {
         placeholder="Select a type"
       />
       {displayContentEditor()}
+      {(selectedType.name !== "ordered-list" && selectedType.name !== "unordered-list") && 
       <Button onClick={() => {createContent()}} label="add content"/>
+    }
     </>
   )
 }

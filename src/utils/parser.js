@@ -20,7 +20,8 @@ export const stringifyMarkdown = (markdownContent) => {
   return markdownStringifier;
 };
 
-export const addContentToEnd = (ast, newNode) => {
+export const addContentToEnd = (ast, type, content) => {
+  const newNode = createAstNode(type, content);
   ast.children.push(newNode);
   const newMarkdownContent = unified().use(remarkStringify).stringify(ast);
   return newMarkdownContent;
@@ -36,3 +37,45 @@ export const removeContent = (ast, i) => {
   return newMarkdownContent
 }
 
+export const createAstNode = (type, value) => {
+  console.log("type", type);
+  console.log("value", value);
+  switch (type) {
+    case 'heading':
+      return {
+        type: 'heading',
+        depth: 1, // you can change this to set the heading level
+        children: [{ type: 'text', value: value }],
+      };
+    case 'paragraph':
+      return {
+        type: 'paragraph',
+        children: [{ type: 'text', value: value }],
+      };
+    case 'code':
+      return {
+        type: 'code',
+        value: value,
+      };
+    case 'ordered-list':
+      return {
+        type: 'list',
+        ordered: true,
+        children: value.map(item => ({
+          type: 'listItem',
+          children: [{ type: 'text', value: item }],
+        })),
+      };
+    case 'unordered-list':
+      return {
+        type: 'list',
+        ordered: false,
+        children: value.map(item => ({
+          type: 'listItem',
+          children: [{ type: 'text', value: item }],
+        })),
+      };
+    default:
+      return null;
+  }
+}

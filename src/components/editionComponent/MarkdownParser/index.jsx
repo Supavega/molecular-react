@@ -5,7 +5,6 @@ import { useEffect, useState } from "react";
 import MarkdownSideBar from "../../SideBar/MarkdownSideBar";
 import AddMarkdownSideBar from "../../SideBar/AddMarkdownSideBar";
 import PropTypes from "prop-types";
-import { useParams } from "react-router-dom";
 
 
 export default function MarkdownParser({ content, fileId }){
@@ -15,7 +14,6 @@ export default function MarkdownParser({ content, fileId }){
   const [selectedContent, setSelectedContent] = useState(null);
   const [selectedIndex, setSelectedIndex] = useState(null);
   const [displayContentSideBar, setDisplayContentSideBar] = useState(false);
-  const { id } = useParams();
 
 
 
@@ -68,6 +66,7 @@ export default function MarkdownParser({ content, fileId }){
         visible={displayContentSideBar}
         onHide={() => setDisplayContentSideBar(false)}
         mdcontent={parsedContent}
+        fileId={fileId}
       />
       <MdContainer>
         <Button label="+" onClick={() => {addObject()}}/>
