@@ -3,6 +3,8 @@ import { Password } from "primereact/password";
 import { Button } from "primereact/button";
 import { useState } from "react";
 import { CenterForm } from "../../shared/form";
+import { Flex } from "../../shared/flex";
+import { Link } from "react-router-dom";
 import RegisterHook from "../../../hooks/registerHook";
 import { useTranslation } from "react-i18next";
 
@@ -12,32 +14,36 @@ export default function RegisterForm () {
   const { t } = useTranslation();
 
   return (
-    <CenterForm onSubmit={handleSubmit}>
-      <InputText 
-        name="username" 
-        placeholder="username"
-        value={values.username} 
-        onChange={handleChange} 
-      />
-      <InputText 
-        name="mail"
-        placeholder="mail"
-        value={values.mail} 
-        onChange={handleChange} 
-      />
-      <Password 
-        name="password" 
-        placeholder="password"
-        value={values.password} 
-        onChange={handleChange} 
-      />
-      <Password 
-          name="confirmPassword" 
-          placeholder="confirm Password"
-          value={confirmPassword}
-          onChange={(e) => setConfirmPassword(e.target.value)}  
+    <Flex>
+      <CenterForm onSubmit={handleSubmit}>
+        <h1>Register</h1>
+        <InputText 
+          name="username" 
+          placeholder="username"
+          value={values.username} 
+          onChange={handleChange} 
         />
-      <Button type="submit">Register</Button>
-    </CenterForm>
+        <InputText 
+          name="mail"
+          placeholder="mail"
+          value={values.mail} 
+          onChange={handleChange} 
+        />
+        <Password 
+          name="password" 
+          placeholder="password"
+          value={values.password} 
+          onChange={handleChange} 
+        />
+        <Password 
+            name="confirmPassword" 
+            placeholder="confirm Password"
+            value={confirmPassword}
+            onChange={(e) => setConfirmPassword(e.target.value)}  
+          />
+        <Button type="submit">Register</Button>
+        <Link to="/login">Sign In</Link>
+      </CenterForm>
+    </Flex>
   );
 }

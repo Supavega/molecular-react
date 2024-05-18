@@ -1,30 +1,29 @@
-import useFileList from "../../../hooks/fileHook/listFileHook";
+import useFileList from "../../hooks/fileHook/listFileHook";
+import styled from "styled-components";
 import { useEffect, useState, useCallback } from "react";
 import { Card } from "primereact/card";
-import styled from "styled-components";
 import { Link } from "react-router-dom";
 
 export default function FileList() {
-    const { loadFileList } = useFileList();
-    const [fileList, setFileList] = useState([]); 
+    const { getAllFile } = useFileList();
+    const [allFiles, setAllFiles] = useState([]); 
     
-    const fetchFileList = useCallback(async () => {
-        const res = await loadFileList();
+    const fetchAllFiles = useCallback(async () => {
+        const res = await getAllFile();
         if (res && res.data) {
-        setFileList(res.data.data);
+        setAllFiles(res.data.data);
         }
-    }, [loadFileList]);
-
-
+    }, [getAllFile]);
     
     useEffect(() => {
-        fetchFileList();
-    }, [fetchFileList]);
-    
+        fetchAllFiles();
+    }, [fetchAllFiles]);
+
+
     return (
         <CardContainer>
             {
-                fileList && fileList.map((file, index) => (
+                allFiles && allFiles.map((file, index) => (
                 <StyledCard 
                     key={index} 
                     title={<Link to={`/edition/${file._id}`} style={{ textDecoration: 'none', color: 'inherit' }}>{file.name}</Link>}
@@ -36,7 +35,7 @@ export default function FileList() {
                 ))
             }
         </CardContainer>
-    )
+    );
 }
 
 const StyledCard = styled(Card)`
