@@ -28,7 +28,8 @@
     "remark-parse": "^11.0.0",
     "remark-stringify": "^11.0.0",
     "styled-components": "^6.1.8",
-    "unified": "^11.0.4"
+    "unified": "^11.0.4",
+    "unist-builder": "^4.0.0"
   },
   "devDependencies": {
     "@types/react": "^18.2.66",

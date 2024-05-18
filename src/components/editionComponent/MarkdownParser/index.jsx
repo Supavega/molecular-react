@@ -1,8 +1,9 @@
-import { parseMarkdown } from "../../../utils/parser";
+import { parseMarkdown, addContent } from "../../../utils/parser";
 import { Button } from "primereact/button";
 import { MdContainer } from "../../shared/mdeditor"
 import { useEffect, useState } from "react";
 import MarkdownSideBar from "../../SideBar/MarkdownSideBar";
+import AddMarkdownSideBar from "../../SideBar/AddMarkdownSideBar";
 import PropTypes from "prop-types";
 import { useParams } from "react-router-dom";
 
@@ -12,7 +13,8 @@ export default function MarkdownParser({ content, fileId }){
   const [elements, setElements] = useState([]);
   const [displaySidebar, setDisplaySidebar] = useState(false);
   const [selectedContent, setSelectedContent] = useState(null);
-  const [selectedIndex, setSelectedIndex] = useState(null)
+  const [selectedIndex, setSelectedIndex] = useState(null);
+  const [displayContentSideBar, setDisplayContentSideBar] = useState(false);
   const { id } = useParams();
 
 
@@ -48,6 +50,11 @@ export default function MarkdownParser({ content, fileId }){
     setDisplaySidebar(true);
   };
 
+  const addObject = () => {
+    setDisplayContentSideBar(true);
+    addContent(parsedContent);
+  };
+
   return(
     <>
       <MarkdownSideBar 
@@ -58,7 +65,13 @@ export default function MarkdownParser({ content, fileId }){
         id={selectedIndex}
         fileId={fileId}
       />
+      <AddMarkdownSideBar
+        visible={displayContentSideBar}
+        onHide={() => setDisplayContentSideBar(false)}
+        mdcontent={parsedContent}
+      />
       <MdContainer>
+        <Button label="+" onClick={() => {addObject()}}/>
         { elements }
       </MdContainer>
     </>
@@ -67,4 +80,5 @@ export default function MarkdownParser({ content, fileId }){
 
 MarkdownParser.propTypes = {
   content: PropTypes.string,
+  fileId: PropTypes.string
 };
