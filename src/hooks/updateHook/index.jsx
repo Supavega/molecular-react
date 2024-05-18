@@ -5,6 +5,8 @@ export default function UpdateHook() {
     const [values, setValues] = useState({
         username: "",
         mail: "",
+        newPassword: "",
+        newPasswordConfirm: "",
         password: "",
     });
 

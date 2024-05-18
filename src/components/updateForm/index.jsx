@@ -14,6 +14,8 @@ export default function UpdateForm() {
             <CenterForm onSubmit={handleSubmit}>
                 <InputText name="username" placeholder="username" value={values.username} onChange={handleChange} />
                 <InputText name="mail" placeholder="mail" value={values.mail} onChange={handleChange} />
+                <Password name="newPassword" placeholder="new password" value={values.newPassword} onChange={handleChange} />
+                <Password name="newPasswordConfirm" placeholder="confirm new password" value={values.newPasswordConfirm} onChange={handleChange} />
                 <legend>&#40; * &#41; are needed to update: </legend>
                 <Password name="password" placeholder="password*" value={values.password} onChange={handleChange} />
                 <Button type="submit" label="Update"/>
