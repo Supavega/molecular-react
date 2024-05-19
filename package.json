@@ -10,17 +10,29 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@mdx-js/react": "^3.0.1",
     "@mdxeditor/editor": "^3.0.5",
     "axios": "^1.6.8",
+    "html2canvas": "^1.4.1",
     "i18next-browser-languagedetector": "^7.2.1",
+    "jspdf": "^2.5.1",
+    "marked": "^12.0.2",
     "prime-react": "^1.0.0",
+    "primeicons": "^7.0.0",
     "primereact": "^10.6.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-hot-toast": "^2.4.1",
     "react-i18next": "^14.1.0",
+    "react-markdown": "^9.0.1",
     "react-router-dom": "^6.22.3",
-    "styled-components": "^6.1.8"
+    "remark": "^15.0.1",
+    "remark-breaks": "^4.0.0",
+    "remark-parse": "^11.0.0",
+    "remark-stringify": "^11.0.0",
+    "styled-components": "^6.1.8",
+    "unified": "^11.0.4",
+    "unist-builder": "^4.0.0"
   },
   "devDependencies": {
     "@types/react": "^18.2.66",
