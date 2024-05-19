@@ -49,6 +49,7 @@ export default function MarkdownParser({ content, fileId }){
             onClick={() => handleRemoveContent(parsedContent, index)}  
             severity="danger"
             text
+            raised
           >
           -
           </Button>
