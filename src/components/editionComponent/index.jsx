@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 import MarkdownPreview from "./MarkdownPreview";
 import MarkdownParser from "./MarkdownParser";
 import { Splitter, SplitterPanel } from 'primereact/splitter';
-
+import EditorNavbar from "./EditorNavbar";
 
 export default function EditionComp() {
   const { loadFile } = useFileList();
@@ -36,6 +36,7 @@ export default function EditionComp() {
 
   return (
     <>
+      <EditorNavbar filename={file?.name} />
       <Splitter style={{ height: '100vh' }}>
           <SplitterPanel className="flex align-items-center justify-content-center">
             <MarkdownParser content={fileContent} fileId={id}/>
