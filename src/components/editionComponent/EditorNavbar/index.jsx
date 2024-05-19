@@ -9,7 +9,7 @@ export default function EditorNavbar({ filename , content }) {
   const items = [
     {
       label: "Quit editing",
-      command: () => navigate("/dashboard")
+      command: () => navigate(-1)
     },
     {
       label: "Export to PDF",
