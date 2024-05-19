@@ -1,4 +1,4 @@
-import EditionComp from "../../components/edition";
+import EditionComp from "../../components/editionComponent";
 
 export default function Edition() {
 

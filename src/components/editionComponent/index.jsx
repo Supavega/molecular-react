@@ -1,9 +1,10 @@
-import { MDXEditor } from "@mdxeditor/editor";
-import { headingsPlugin } from "@mdxeditor/editor";
-import "@mdxeditor/editor/style.css";
 import { useEffect, useState, useCallback } from "react";
 import useFileList from "../../hooks/fileHook/listFileHook";
 import { useParams } from "react-router-dom";
+import MarkdownPreview from "./MarkdownPreview";
+import MarkdownParser from "./MarkdownParser";
+import { Splitter, SplitterPanel } from 'primereact/splitter';
+import EditorNavbar from "./EditorNavbar";
 
 export default function EditionComp() {
   const { loadFile } = useFileList();
@@ -33,24 +34,17 @@ export default function EditionComp() {
     }
 	}, [file]);
 
-	useEffect(() => {
-	}, [fileContent]);
-	
-	const addContent = () => {
-		setFileContent(prevContent => prevContent + "\n# New content");
-	}
-
-
-
-  return fileContent !== null ? (
-		<>
-			<button onClick={addContent}> new content </button>
-			<MDXEditor
-				markdown={fileContent}
-				plugins={[ headingsPlugin() ]}
-			/>
-		</>
-  ) : (
-    <h1>Loading...</h1>
-  );
+  return (
+    <>
+      <EditorNavbar filename={file?.name} content={fileContent} />
+      <Splitter style={{ height: '100vh' }}>
+          <SplitterPanel className="flex align-items-center justify-content-center">
+            <MarkdownParser content={fileContent} fileId={id}/>
+          </SplitterPanel>
+          <SplitterPanel className="flex align-items-center justify-content-center">
+            <MarkdownPreview content={fileContent} />
+          </SplitterPanel>
+      </Splitter>
+    </>
+  )
 }
