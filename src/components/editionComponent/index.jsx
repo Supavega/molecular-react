@@ -3,7 +3,8 @@ import useFileList from "../../hooks/fileHook/listFileHook";
 import { useParams } from "react-router-dom";
 import MarkdownPreview from "./MarkdownPreview";
 import MarkdownParser from "./MarkdownParser";
-import { FlexTileChild, FlexTilesContainer } from "../shared/flex";
+import { Splitter, SplitterPanel } from 'primereact/splitter';
+
 
 export default function EditionComp() {
   const { loadFile } = useFileList();
@@ -35,14 +36,14 @@ export default function EditionComp() {
 
   return (
     <>
-      <FlexTilesContainer>
-        <FlexTileChild>
-          <MarkdownParser content={fileContent} fileId={id}/>
-        </FlexTileChild>
-        <FlexTileChild> 
-          <MarkdownPreview content={fileContent} />
-        </FlexTileChild>
-      </FlexTilesContainer>
+      <Splitter style={{ height: '100vh' }}>
+          <SplitterPanel className="flex align-items-center justify-content-center">
+            <MarkdownParser content={fileContent} fileId={id}/>
+          </SplitterPanel>
+          <SplitterPanel className="flex align-items-center justify-content-center">
+            <MarkdownPreview content={fileContent} />
+          </SplitterPanel>
+      </Splitter>
     </>
   )
 }
