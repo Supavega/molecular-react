@@ -36,8 +36,6 @@ export const removeContent = (ast, i) => {
 }
 
 export const createAstNode = (type, value) => {
-  console.log("type", type);
-  console.log("value", value);
   switch (type) {
     case 'heading':
       return {
@@ -76,4 +74,4 @@ export const createAstNode = (type, value) => {
     default:
       return null;
   }
-}
+};

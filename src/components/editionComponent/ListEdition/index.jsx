@@ -2,6 +2,8 @@ import { useState } from "react";
 import { addContentToEnd } from "../../../utils/parser";
 import { Button } from "primereact/button";
 import useFileList from "../../../hooks/fileHook/listFileHook";
+import { InputText } from 'primereact/inputtext';
+        
 
 
 export default function ListEdition ({ ordered, mdcontent, fileId }) {
@@ -18,6 +20,12 @@ export default function ListEdition ({ ordered, mdcontent, fileId }) {
     setItems([...items, ""]);
   };
 
+  const handleRemoveClick = (index) => {
+    const newItems = [...items];
+    newItems.splice(index, 1);
+    setItems(newItems);
+  };
+
   const addListContent = async () => {
     const listType = ordered ? 'ordered-list' : 'unordered-list';
     const res = addContentToEnd( mdcontent, listType, items);
@@ -28,13 +36,15 @@ export default function ListEdition ({ ordered, mdcontent, fileId }) {
     <>
       <div>
         {items.map((item, index) => (
-          <input
-            key={index}
-            value={item}
-            onChange={(event) => handleInputChange(event, index)}
-          />
+          <div key={index}>
+            <InputText
+              value={item}
+              onChange={(event) => handleInputChange(event, index)}
+            />
+            <Button severity="danger" onClick={() => handleRemoveClick(index)}>-</Button>
+          </div>
         ))}
-        <button onClick={handleAddClick}>Add new item</button>
+        <Button onClick={handleAddClick}>Add new item</Button>
         {ordered ? (
           <ol>
             {items.map((item, index) => (
