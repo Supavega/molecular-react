@@ -1,8 +1,10 @@
 import { Menubar } from "primereact/menubar";
 import { useNavigate } from "react-router-dom";
+import { exportToMarkdown , exportToPdf} from "../../../utils/parser";
 
-export default function EditorNavbar({ filename }) {  
+export default function EditorNavbar({ filename , content }) {  
   const navigate = useNavigate();
+
 
   const items = [
     {
@@ -11,9 +13,11 @@ export default function EditorNavbar({ filename }) {
     },
     {
       label: "Export to PDF",
+      command: () => exportToPdf(filename , content)
     },
     {
       label: "Export to Markdown",
+      command: () => exportToMarkdown(filename , content)
     }
   ]
 

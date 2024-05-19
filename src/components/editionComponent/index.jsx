@@ -36,7 +36,7 @@ export default function EditionComp() {
 
   return (
     <>
-      <EditorNavbar filename={file?.name} />
+      <EditorNavbar filename={file?.name} content={fileContent} />
       <Splitter style={{ height: '100vh' }}>
           <SplitterPanel className="flex align-items-center justify-content-center">
             <MarkdownParser content={fileContent} fileId={id}/>

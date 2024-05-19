@@ -2,6 +2,9 @@ import { unified } from "unified";
 import remarkBreaks from "remark-breaks";
 import remarkParse from "remark-parse";
 import remarkStringify from "remark-stringify";
+import jsPDF from "jspdf";
+import html2canvas from "html2canvas";
+import { marked } from 'marked';
 
 export const parseMarkdown = (markdownContent) => {
   const markdownParser = unified()
@@ -34,7 +37,6 @@ export const removeContent = (ast, i) => {
     .stringify(ast);
   return newMarkdownContent
 }
-
 export const createAstNode = (type, value) => {
   switch (type) {
     case 'heading':
@@ -74,4 +76,28 @@ export const createAstNode = (type, value) => {
     default:
       return null;
   }
+};
+
+
+export const exportToMarkdown = (filename , content) => {
+  const markdownContent = stringifyMarkdown(parseMarkdown(content));
+  const element = document.createElement("a");
+  const file = new Blob([markdownContent], {type: 'text/plain'});
+  element.href = URL.createObjectURL(file);
+  element.download = `${filename}.md`;
+  document.body.appendChild(element);
+  element.click();
+};
+
+export const exportToPdf = async (filename, content) => {
+  const htmlContent = marked(content);
+  const tempDiv = document.createElement('div');
+  tempDiv.innerHTML = htmlContent;
+  document.body.appendChild(tempDiv);
+  const canvas = await html2canvas(tempDiv);
+  const imgData = canvas.toDataURL('image/png');
+  const doc = new jsPDF();
+  doc.addImage(imgData, 'PNG', 0, 0);
+  doc.save(`${filename}.pdf`);
+  document.body.removeChild(tempDiv);
 };
