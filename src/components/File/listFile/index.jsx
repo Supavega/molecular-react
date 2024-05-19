@@ -1,4 +1,5 @@
 import useFileList from "../../../hooks/fileHook/listFileHook";
+import useDeleteFile from "../../../hooks/fileHook";
 import { useEffect, useState, useCallback } from "react";
 import { Card } from "primereact/card";
 import styled from "styled-components";
@@ -6,7 +7,8 @@ import { Link } from "react-router-dom";
 
 export default function FileList() {
     const { loadFileList } = useFileList();
-    const [fileList, setFileList] = useState([]); 
+    const [fileList, setFileList] = useState([]);
+    const { deleteFile } = useDeleteFile();
     
     const fetchFileList = useCallback(async () => {
         const res = await loadFileList();
@@ -16,6 +18,10 @@ export default function FileList() {
     }, [loadFileList]);
 
 
+    const handleDelete = async (fileId) => {
+        await deleteFile(fileId);
+        fetchFileList();
+    };
     
     useEffect(() => {
         fetchFileList();
@@ -32,6 +38,7 @@ export default function FileList() {
                     <div className="content">
                         {file.content}
                     </div>
+                    <button onClick={() => handleDelete(file._id)}>Delete</button>
                 </StyledCard>
                 ))
             }

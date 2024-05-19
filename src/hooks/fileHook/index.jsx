@@ -39,9 +39,26 @@ export default function UseFileCreate() {
         }
     }
 
+    const deleteFile = async (fileId) => {
+        console.log(fileId);
+        try {
+            const token = localStorage.getItem('token');
+            const response = await axios.delete(`http://localhost:8080/file/${fileId}`,
+                {
+                    headers: { Authorization: `Bearer ${token}` }
+                }
+            );
+    
+            console.log(response , "caca");
+        } catch (error) {
+            console.error(error);
+        }
+    }
+
     return {
         values,
         HandleSubmit,
         handleChange,
+        deleteFile,
     }
 }
