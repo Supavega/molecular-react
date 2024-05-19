@@ -1,10 +1,12 @@
-import { parseMarkdown } from "../../../utils/parser";
+import { parseMarkdown, removeContent } from "../../../utils/parser";
 import { Button } from "primereact/button";
 import { MdContainer } from "../../shared/mdeditor"
 import { useEffect, useState } from "react";
 import MarkdownSideBar from "../../SideBar/MarkdownSideBar";
 import AddMarkdownSideBar from "../../SideBar/AddMarkdownSideBar";
 import PropTypes from "prop-types";
+import { FlexTilesContainer } from "../../shared/flex";
+import useFileList from "../../../hooks/fileHook/listFileHook";
 
 
 export default function MarkdownParser({ content, fileId }){
@@ -14,7 +16,13 @@ export default function MarkdownParser({ content, fileId }){
   const [selectedContent, setSelectedContent] = useState(null);
   const [selectedIndex, setSelectedIndex] = useState(null);
   const [displayContentSideBar, setDisplayContentSideBar] = useState(false);
+  const { saveFile } = useFileList();
 
+
+  const handleRemoveContent = async (content, index) => {
+    const newContent = removeContent(content, index);
+    await saveFile(fileId, newContent);
+  };
 
 
   useEffect(() => {
@@ -30,13 +38,21 @@ export default function MarkdownParser({ content, fileId }){
   const displayParsedContent = () => {
     const newElements = parsedContent.children.map((mdcontent, index) => {
       return (
-        <Button
-          key={index}
-          text 
-          onClick={() => displayDetailContent(mdcontent, index)}
-        >
-          {mdcontent.type}
-        </Button>
+        <FlexTilesContainer key={index}>
+          <Button
+            text
+            onClick={() => displayDetailContent(mdcontent, index)}
+          >
+            {mdcontent.type}
+          </Button>
+          <Button
+            onClick={() => handleRemoveContent(parsedContent, index)}  
+            severity="danger"
+            text
+          >
+          -
+          </Button>
+        </FlexTilesContainer>
       );
     });
     setElements(newElements);

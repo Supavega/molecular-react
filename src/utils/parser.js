@@ -28,12 +28,10 @@ export const addContentToEnd = (ast, type, content) => {
 };
 
 export const removeContent = (ast, i) => {
-  ast.chidlren.splice(i, 1);
-
+  ast.children.splice(i, 1);
   const newMarkdownContent = unified()
     .use(remarkStringify)
     .stringify(ast);
-
   return newMarkdownContent
 }
 
