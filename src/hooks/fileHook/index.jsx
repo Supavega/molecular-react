@@ -28,7 +28,7 @@ export default function UseFileCreate() {
             return;
         }
         try {
-            await axios.post("http://localhost:8080/file/create", { ...values , workspaceid: workspaceid , creationDate: new Date() , userId: userId
+            await axios.post(`${import.meta.env.VITE_API_URL}/file/create`, { ...values , workspaceid: workspaceid , creationDate: new Date() , userId: userId
             }, {
                 headers: {
                     Authorization: "Bearer " + storedToken
@@ -45,7 +45,7 @@ export default function UseFileCreate() {
         console.log(fileId);
         try {
             const token = localStorage.getItem('token');
-            const response = await axios.delete(`http://localhost:8080/file/${fileId}`,
+            const response = await axios.delete(`${import.meta.env.VITE_API_URL}/file/${fileId}`,
                 {
                     headers: { Authorization: `Bearer ${token}` }
                 }
@@ -60,7 +60,7 @@ export default function UseFileCreate() {
     const updateFile = async (id, data) => {
         try {
             const token = localStorage.getItem('token');
-            await axios.put(`http://localhost:8080/file`, {fileId: id , name: data},
+            await axios.put(`${import.meta.env.VITE_API_URL}/file`, {fileId: id , name: data},
                 {
                     headers: { Authorization: `Bearer ${token}` }
                 }

@@ -22,7 +22,7 @@ export default function UpdateHook() {
         const TOKEN = localStorage.getItem('token');
         e.preventDefault();
         try {
-            const res = await axios.post('http://localhost:8080/update', { ...values, userId: ID},
+            const res = await axios.post(`${import.meta.env.VITE_API_URL}/update`, { ...values, userId: ID},
             {headers: {
                 Authorization: "Bearer " + TOKEN,
             }});

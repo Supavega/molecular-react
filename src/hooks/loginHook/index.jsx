@@ -20,7 +20,7 @@ export default function LoginHook() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post('http://localhost:8080/login', { ...values });
+      const res = await axios.post(`${import.meta.env.VITE_API_URL}/login`, { ...values });
       const token = res.headers["authorization"].split(" ")[1];
       const userId = res.data.user._id;
       localStorage.setItem('userId', userId);

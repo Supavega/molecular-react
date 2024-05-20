@@ -11,7 +11,7 @@ export default function useWorkspaceList() {
         return;
       }
 
-    const res = await axios.get("http://localhost:8080/workspace", {
+    const res = await axios.get(`${import.meta.env.VITE_API_URL}/workspace`, {
       params: { userId: userId },
       headers: {
         Authorization: "Bearer " + storedToken

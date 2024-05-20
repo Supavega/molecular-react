@@ -27,7 +27,7 @@ export default function UseWorkspaceForm() {
         console.error('No token found in local storage');
         return;
       }
-      await axios.post("http://localhost:8080/workspace", { ...values, userId: storedUserId },{
+      await axios.post(`${import.meta.env.VITE_API_URL}/workspace`, { ...values, userId: storedUserId },{
         headers: {
           Authorization: "Bearer " + storedToken
         }
