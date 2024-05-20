@@ -1,7 +1,8 @@
 import useFileList from "../../../hooks/fileHook/listFileHook";
 import useDeleteFile from "../../../hooks/fileHook";
 import { useEffect, useState, useCallback } from "react";
-import { Card } from "primereact/card";
+import { Button } from 'primereact/button';
+import { Card} from "primereact/card";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 
@@ -9,6 +10,8 @@ export default function FileList() {
     const { loadFileList } = useFileList();
     const [fileList, setFileList] = useState([]);
     const { deleteFile } = useDeleteFile();
+    const [editingState, setEditingState] = useState({});
+    const { updateFile } = useDeleteFile();
     
     const fetchFileList = useCallback(async () => {
         const res = await loadFileList();
@@ -22,6 +25,20 @@ export default function FileList() {
         await deleteFile(fileId);
         fetchFileList();
     };
+
+    const handleEditClick = (id , name) => {
+        setEditingState(prevState => ({ ...prevState, [id]: { isEditing: true, inputValue: name} }));
+    };
+    
+    const handleInputChange = (id, event) => {
+        setEditingState(prevState => ({ ...prevState, [id]: { ...prevState[id], inputValue: event.target.value } }));
+    };
+
+    const handleSaveClick = (id) => {
+        updateFile(id, editingState[id].inputValue);
+    
+        setEditingState(prevState => ({ ...prevState, [id]: { ...prevState[id], isEditing: false } }));
+    };
     
     useEffect(() => {
         fetchFileList();
@@ -33,8 +50,22 @@ export default function FileList() {
                 fileList && fileList.map((file, index) => (
                 <StyledCard 
                     key={index} 
-                    title={<Link to={`/edition/${file._id}`} style={{ textDecoration: 'none', color: 'inherit' }}>{file.name}</Link>}
                 >
+                    {editingState[file._id] && editingState[file._id].isEditing ? (
+                        <>
+                            <input 
+                                type="text" 
+                                value={editingState[file._id].inputValue} 
+                                onChange={(event) => handleInputChange(file._id, event)} 
+                            />
+                            <Button label="Save" onClick={() => handleSaveClick(file._id)} />
+                        </>
+                    ) : (
+                        <h1>
+                            <Link to={`/edition/${file._id}`} style={{ textDecoration: 'none', color: 'inherit' }}>{file.name}</Link>
+                            <Button icon="pi pi-pencil" onClick={() => handleEditClick(file._id, file.name)} />
+                        </h1>
+                    )}
                     <div className="content">
                         {file.content}
                     </div>
