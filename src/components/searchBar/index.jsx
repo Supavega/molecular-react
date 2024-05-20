@@ -1,5 +1,7 @@
+import { InputText } from "primereact/inputtext";
+
 export default function SearchBar({ search, onSearchChange }) {
     return (
-        <input type="text" value={search} onChange={onSearchChange} placeholder="Rechercher..." />
+        <InputText value={search} onChange={onSearchChange} placeholder="Rechercher..." />
     );
 }
