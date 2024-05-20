@@ -5,6 +5,7 @@ import { Button } from 'primereact/button';
 import { Card} from "primereact/card";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import { Button } from "primereact/button";
 
 export default function FileList() {
     const { loadFileList } = useFileList();
@@ -69,7 +70,7 @@ export default function FileList() {
                     <div className="content">
                         {file.content}
                     </div>
-                    <button onClick={() => handleDelete(file._id)}>Delete</button>
+                    <Button severity="danger" onClick={() => handleDelete(file._id)}>Delete</Button>
                 </StyledCard>
                 ))
             }
