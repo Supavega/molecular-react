@@ -12,7 +12,7 @@ export default function useFileList() {
             return;
         }
     
-        const res = await axios.get("http://localhost:8080/file", {
+        const res = await axios.get(`${import.meta.env.VITE_API_URL}/file`, {
         params: { workspaceid: workspaceId },
         headers: {
             Authorization: "Bearer " + storedToken
@@ -29,7 +29,7 @@ export default function useFileList() {
       const storedToken = localStorage.getItem("token");
 
       try {
-        const res = await axios.get(`http://localhost:8080/file/${id}`, {
+        const res = await axios.get(`${import.meta.env.VITE_API_URL}/file/${id}`, {
           headers: {
             Authorization: "Bearer " + storedToken,
           },
@@ -43,7 +43,7 @@ export default function useFileList() {
     const saveFile = async (id, data) => {
       const storedToken = localStorage.getItem("token");
       try {
-        await axios.put("http://localhost:8080/file", {fileId: id, content: data}, {
+        await axios.put(`${import.meta.env.VITE_API_URL}/file`, {fileId: id, content: data}, {
           headers: {
             Authorization: "Bearer " + storedToken
           }
@@ -59,7 +59,7 @@ export default function useFileList() {
       const userId = localStorage.getItem("userId");
 
       try {
-        const res = await axios.get(`http://localhost:8080/fileAll/${userId}`, {
+        const res = await axios.get(`${import.meta.env.VITE_API_URL}/fileAll/${userId}`, {
           headers: {
             Authorization: "Bearer " + storedToken,
           },

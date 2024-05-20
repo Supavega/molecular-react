@@ -19,7 +19,7 @@ export default function RegisterHook() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const { data } = await axios.post("http://localhost:8080/register", {
+            const { data } = await axios.post(`${import.meta.env.VITE_API_URL}/register`, {
                 ...values,
             });
             if (data) {
