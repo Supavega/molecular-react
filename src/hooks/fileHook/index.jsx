@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useState } from "react";
+import { updateWorkspace } from "../../../../molecular-api/model/workspaceModel";
 
 export default function UseFileCreate() {
     const [values, setValues] = useState({
@@ -21,12 +22,13 @@ export default function UseFileCreate() {
     const HandleSubmit = async (e) => {
         e.preventDefault();
         const storedToken = localStorage.getItem("token");
+        const userId = localStorage.getItem("userId");
         if (!storedToken) {
             console.error('No token found in local storage');
             return;
         }
         try {
-            await axios.post("http://localhost:8080/file/create", { ...values , workspaceid: workspaceid , creationDate: new Date()
+            await axios.post("http://localhost:8080/file/create", { ...values , workspaceid: workspaceid , creationDate: new Date() , userId: userId
             }, {
                 headers: {
                     Authorization: "Bearer " + storedToken
@@ -55,10 +57,24 @@ export default function UseFileCreate() {
         }
     }
 
+    const updateFile = async (id, data) => {
+        try {
+            const token = localStorage.getItem('token');
+            await axios.put(`http://localhost:8080/file`, {fileId: id , name: data},
+                {
+                    headers: { Authorization: `Bearer ${token}` }
+                }
+            );
+        } catch (error) {
+            console.error(error);
+        }
+    }
+
     return {
         values,
         HandleSubmit,
         handleChange,
         deleteFile,
+        updateFile,
     }
 }

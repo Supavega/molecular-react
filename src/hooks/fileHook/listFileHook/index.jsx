@@ -56,8 +56,10 @@ export default function useFileList() {
     
     const getAllFile = async () => {
       const storedToken = localStorage.getItem("token");
+      const userId = localStorage.getItem("userId");
+
       try {
-        const res = await axios.get(`http://localhost:8080/fileAll`, {
+        const res = await axios.get(`http://localhost:8080/fileAll/${userId}`, {
           headers: {
             Authorization: "Bearer " + storedToken,
           },
