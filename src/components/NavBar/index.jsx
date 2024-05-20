@@ -24,6 +24,11 @@ export default function NavBar() {
     {
       label: "My workspaces",
       command: () => setShowSideBar(!showSideBar)
+    },
+    {
+      label: "Logout",
+      command: () => {localStorage.removeItem("token"); window.location.href = "/login"
+      }
     }
   ]
 
