@@ -16,9 +16,10 @@ export default function WorkspaceList() {
     }
   }, [loadWorkspaceList]);
 
-  const loadWorkspace = (id) => {
+  const loadWorkspace = (id , workspaceName) => {
     return () => {
-      navigate(`/workspace/${id}`);
+      navigate(`/workspace/${id}` , {state: {name: workspaceName}});
+
     }
   }
 
@@ -31,7 +32,7 @@ export default function WorkspaceList() {
       {
         workspaceList.map((workspace, index) => (
           <List key={index}> 
-            <ListItem onClick={loadWorkspace(workspace._id)}> {workspace.name} </ListItem>
+            <ListItem onClick={loadWorkspace(workspace._id , workspace.name)}> {workspace.name} </ListItem>
           </List>
         ))
       }

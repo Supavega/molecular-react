@@ -2,7 +2,7 @@ import { InputText } from "primereact/inputtext";
 import { Button } from "primereact/button";
 import UseFileCreate from "../../../hooks/fileHook";
 
-export default function WorkspaceForm() {
+export default function CreateFileForm() {
     const { values, handleChange, HandleSubmit } = UseFileCreate();
   
     return (
