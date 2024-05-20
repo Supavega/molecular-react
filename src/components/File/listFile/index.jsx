@@ -39,7 +39,7 @@ export default function FileList() {
                     <div className="content">
                         {file.content}
                     </div>
-                    <Button onClick={() => handleDelete(file._id)}>Delete</Button>
+                    <Button severity="danger" onClick={() => handleDelete(file._id)}>Delete</Button>
                 </StyledCard>
                 ))
             }
