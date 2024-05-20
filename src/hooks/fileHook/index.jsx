@@ -21,12 +21,13 @@ export default function UseFileCreate() {
     const HandleSubmit = async (e) => {
         e.preventDefault();
         const storedToken = localStorage.getItem("token");
+        const userId = localStorage.getItem("userId");
         if (!storedToken) {
             console.error('No token found in local storage');
             return;
         }
         try {
-            await axios.post("http://localhost:8080/file/create", { ...values , workspaceid: workspaceid , creationDate: new Date()
+            await axios.post("http://localhost:8080/file/create", { ...values , workspaceid: workspaceid , creationDate: new Date() , userId: userId
             }, {
                 headers: {
                     Authorization: "Bearer " + storedToken
