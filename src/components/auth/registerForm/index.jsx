@@ -6,12 +6,15 @@ import { CenterForm } from "../../shared/form";
 import { Flex } from "../../shared/flex";
 import { Link } from "react-router-dom";
 import RegisterHook from "../../../hooks/registerHook";
-import { useTranslation } from "react-i18next";
+import LoginHook from "../../../hooks/loginHook";
+
 
 export default function RegisterForm () {
   const { values, handleChange, handleSubmit } = RegisterHook();
   const [confirmPassword, setConfirmPassword] = useState("");
-  const { t } = useTranslation();
+  const { useCheckToken } = LoginHook();
+
+  useCheckToken();
 
   return (
     <Flex>

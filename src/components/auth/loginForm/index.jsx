@@ -6,7 +6,9 @@ import { Link } from "react-router-dom";
 import LoginHook from "../../../hooks/loginHook";
 
 export default function LoginForm() {
-  const { values, handleChange, handleSubmit } = LoginHook();
+  const { values, handleChange, handleSubmit, useCheckToken } = LoginHook();
+  
+  useCheckToken();
 
   return (
     <>
