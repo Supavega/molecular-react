@@ -49,8 +49,6 @@ export default function UseFileCreate() {
                     headers: { Authorization: `Bearer ${token}` }
                 }
             );
-    
-            console.log(response , "caca");
         } catch (error) {
             console.error(error);
         }
